@@ -5,8 +5,9 @@ release_list = ['precise', 'quantal', 'raring']
 
 
 def build(release):
-    local("vagrant up %s" % release)
-    local("vagrant package %s --output %s-desktop-i386" % release)
+    local("vagrant up {release}".format(release=release))
+    local("vagrant package {release} --output {release}-desktop-i386".format(
+        release=release))
 
 
 def build_all():

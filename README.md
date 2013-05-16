@@ -22,12 +22,5 @@ Usage
 
 Because actual .box files are very large, updating them would require a lot of
 bandwidth, and make peer review harder, the actual images are provided as a
-recipe that modifies official cloud images. To generate your set you will need
-the following tools:
-
-1) vagrant (>= 1.0.6)
-2) fabric
-
-To generate your images simply run::
-
-    $ fab build_all
+recipe that modifies official cloud images. To generate your set you will only
+need vagrant.

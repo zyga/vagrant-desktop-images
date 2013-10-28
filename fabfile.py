@@ -1,7 +1,7 @@
 from fabric.api import local
 
 
-release_list = ['precise', 'quantal', 'raring']
+release_list = ['precise', 'quantal', 'raring', 'saucy', 'trusty']
 
 
 def build(release):

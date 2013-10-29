@@ -23,3 +23,5 @@ launch-%:
 	mkdir -p $*-$(stamp)
 	sed s/@RELEASE@/$*/ <Vagrantfile.in >$*-$(stamp)/Vagrantfile
 	cd $*-$(stamp) && vagrant up
+
+.PRECIOUS: %.box

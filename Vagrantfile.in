@@ -24,9 +24,11 @@ Vagrant.configure("2") do |config|
     vb.gui = true
 
     # Use VBoxManage to customize the VM. For example to change memory:
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--memory", 1024]
+    vb.customize ["modifyvm", :id, "--vram", 64]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
   end
 
-  # View the documentation for the provider you're using for more
-  # information on available options.
+  # Provision the machine with puppet
+  config.vm.provision :puppet
 end

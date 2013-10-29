@@ -29,10 +29,17 @@ the following tools:
 
 2) GNU make
 
-To generate your images simply run::
+To generate all images simply run::
 
     $ make
 
 To generate a specific release only::
 
     $ make raring
+
+Ready to bring up your image and start using it?
+
+    $ make -C working raring
+
+This will create a new Vagrant project using the raring desktop box,
+and boot directly into Unity. When you're done, just delete working/raring directory.

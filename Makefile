@@ -22,6 +22,7 @@ clean:
 launch-%:
 	mkdir -p $*-$(stamp)
 	sed s/@RELEASE@/$*/ <Vagrantfile.in >$*-$(stamp)/Vagrantfile
+	cp -r manifests $*-$(stamp)
 	cd $*-$(stamp) && vagrant up
 
 .PRECIOUS: %.box

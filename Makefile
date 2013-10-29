@@ -1,13 +1,22 @@
 #!/usr/bin/make -f
 
+stamp := $(shell date +%s)
+
 all: precise quantal raring saucy trusty
 	@true
 
-# Suffix appended to distro release name.
-dsk := -desktop-i386
+%: %-desktop-i386
+	@true
 
-%:
-	rm -f $@$(dsk)
-	vagrant up $@
-	vagrant package $@ --output $@$(dsk)
-	vagrant box add -f $@$(dsk) ./$@$(dsk)
+%-desktop-i386:
+	vagrant up $*
+	vagrant package $* --output $@
+	vagrant box add -f $@ ./$@
+
+clean:
+	rm -f *-desktop-i386
+
+launch-%:
+	mkdir -p $*-$(stamp)
+	sed s/@RELEASE@/$*/ <Vagrantfile.in >$*-$(stamp)/Vagrantfile
+	cd $*-$(stamp) && vagrant up

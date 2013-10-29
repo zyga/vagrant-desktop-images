@@ -39,7 +39,7 @@ To generate a specific release only::
 
 Ready to bring up your image and start using it?
 
-    $ make -C working raring
+    $ make launch-raring
 
 This will create a new Vagrant project using the raring desktop box,
 and boot directly into Unity. When you're done, just delete working/raring directory.

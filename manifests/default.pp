@@ -50,26 +50,31 @@ class screensaver_settings {
   exec {
       'disable screensaver lock':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/lock-enabled false'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/lock-enabled) != false'",
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
           user    => 'vagrant',
        ;
       'disable screensaver lock after suspend':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend false'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend) != false'",
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
           user    => 'vagrant',
        ;
        'set idle delay to zero':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/session/idle-delay 0'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/session/idle-delay) != 0'",
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
           user    => 'vagrant',
        ;
        'disable monitor sleep on AC':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-ac 0'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-ac) != 0'",
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
           user    => 'vagrant',
        ;
        'disable monitor sleep on battery':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-battery 0'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-battery) != 0'",
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
           user    => 'vagrant',
        ;

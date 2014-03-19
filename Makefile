@@ -11,7 +11,7 @@ all: precise quantal raring saucy trusty
 %-server-cloudimg-i386-vagrant-disk1.box:
 	wget -c http://cloud-images.ubuntu.com/vagrant/$*/current/$*-server-cloudimg-i386-vagrant-disk1.box
 
-%-desktop-i386: %-server-cloudimg-i386-vagrant-disk1.box
+%-desktop-i386:
 	vagrant up $*
 	vagrant package $* --output $@
 	vagrant box add -f $@ ./$@

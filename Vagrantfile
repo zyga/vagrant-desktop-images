@@ -2,7 +2,6 @@
 # vi: set ft=ruby sw=2 ts=2 :
 
 Vagrant.configure("2") do |config|
-  config.ssh.timeout = 60
 
   [:precise, :quantal, :raring, :saucy, :trusty].each do |release|
     config.vm.define release do |conf|

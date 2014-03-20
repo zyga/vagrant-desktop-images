@@ -1,13 +1,4 @@
 class base {
-  $apt_proxy = ""
-  if $apt_proxy {
-    file { 'apt-get proxy config':
-      before  => Exec['apt-get update', 'apt-get dist-upgrade'],
-      path    => '/etc/apt/apt.conf.d/00proxy',
-      ensure  => present,
-      content => "Acquire::http::Proxy \"${apt_proxy}\";\n"
-    }
-  }
   exec { 'apt-get update':
     command => '/usr/bin/apt-get update'
   }
@@ -81,9 +72,9 @@ class screensaver_settings {
        'disable remind-reload query':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /apps/update-manager/remind-reload false'",
           onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /apps/update-manager/remind-reload) = true'",
-          user    => 'vagrant',
           require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          ;
+          user    => 'vagrant',
+       ;
   }
 }
 

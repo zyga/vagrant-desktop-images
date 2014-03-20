@@ -1,28 +1,18 @@
 #!/usr/bin/make -f
 
-stamp := $(shell date +%s)
+RELEASES = precise quantal raring saucy trusty
+IMAGES = $(foreach release,$(RELEASES),$(release)-desktop-i386 $(release)-desktop-amd64)
+BOXES = $(foreach image,$(IMAGES),$(image).box)
 
-all: precise quantal raring saucy trusty
-	@true
+.PHONY: all
+all: $(BOXES)
 
-%: %-desktop-i386
-	@true
-
-%-server-cloudimg-i386-vagrant-disk1.box:
-	wget -c http://cloud-images.ubuntu.com/vagrant/$*/current/$*-server-cloudimg-i386-vagrant-disk1.box
-
-%-desktop-i386:
+.PHONY: $(BOXES)
+$(BOXES): %.box:
 	vagrant up $*
-	vagrant package $* --output $@
-	vagrant box add -f $@ ./$@
+	vagrant package $* --output $*.box
+	vagrant destroy --force $*
 
 clean:
-	rm -f *-desktop-i386
-
-launch-%:
-	mkdir -p $*-$(stamp)
-	sed s/@RELEASE@/$*/ <Vagrantfile.in >$*-$(stamp)/Vagrantfile
-	cp -r manifests $*-$(stamp)
-	cd $*-$(stamp) && vagrant up
-
-.PRECIOUS: %.box
+	vagrant destroy --force
+	rm -f *.box

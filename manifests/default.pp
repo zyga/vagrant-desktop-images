@@ -39,6 +39,12 @@ class screensaver_settings {
     ensure  => present
   }
   exec {
+      'disable screensaver when idle':
+          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/idle-activation-enabled false'",
+          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/idle-activation-enabled) != false'",
+          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user    => 'vagrant',
+       ;
       'disable screensaver lock':
           command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/lock-enabled false'",
           onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/lock-enabled) != false'",

@@ -1,7 +1,18 @@
 class base {
+  # Ship our sources.list with all the pockets (especially multiverse)
+  # enabled so that we can install virtualbox dkms packages.
+  file { 'apt sources.list':
+    path    => '/etc/apt/sources.list',
+    ensure  => present,
+    mode    => 0644,
+    owner   => root,
+    group   => root,
+    source  => "/vagrant/files/apt/sources-${operatingsystemrelease}.list",
+  }
   exec { 'apt-get update':
     command => '/usr/bin/apt-get update',
-    timeout => 600
+    timeout => 600,
+    require => File['apt sources.list'],
   }
   exec { 'apt-get dist-upgrade':
     require => Exec['apt-get update'],

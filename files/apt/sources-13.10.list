@@ -1,0 +1,11 @@
+# deb http://archive.canonical.com/ubuntu saucy partner
+# deb http://archive.ubuntu.com/ubuntu saucy-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu saucy main
+deb http://archive.ubuntu.com/ubuntu saucy multiverse
+deb http://archive.ubuntu.com/ubuntu saucy universe
+deb http://archive.ubuntu.com/ubuntu saucy-updates main
+deb http://archive.ubuntu.com/ubuntu saucy-updates multiverse
+deb http://archive.ubuntu.com/ubuntu saucy-updates universe
+deb http://security.ubuntu.com/ubuntu saucy-security main
+deb http://security.ubuntu.com/ubuntu saucy-security multiverse
+deb http://security.ubuntu.com/ubuntu saucy-security universe

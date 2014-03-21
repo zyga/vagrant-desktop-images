@@ -1,0 +1,11 @@
+# deb http://archive.canonical.com/ubuntu precise partner
+# deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu precise main
+deb http://archive.ubuntu.com/ubuntu precise multiverse
+deb http://archive.ubuntu.com/ubuntu precise universe
+deb http://archive.ubuntu.com/ubuntu precise-updates main
+deb http://archive.ubuntu.com/ubuntu precise-updates multiverse
+deb http://archive.ubuntu.com/ubuntu precise-updates universe
+deb http://security.ubuntu.com/ubuntu precise-security main
+deb http://security.ubuntu.com/ubuntu precise-security multiverse
+deb http://security.ubuntu.com/ubuntu precise-security universe

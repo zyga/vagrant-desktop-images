@@ -1,0 +1,11 @@
+# deb http://archive.canonical.com/ubuntu raring partner
+# deb http://archive.ubuntu.com/ubuntu raring-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu raring main
+deb http://archive.ubuntu.com/ubuntu raring multiverse
+deb http://archive.ubuntu.com/ubuntu raring universe
+deb http://archive.ubuntu.com/ubuntu raring-updates main
+deb http://archive.ubuntu.com/ubuntu raring-updates multiverse
+deb http://archive.ubuntu.com/ubuntu raring-updates universe
+deb http://security.ubuntu.com/ubuntu raring-security main
+deb http://security.ubuntu.com/ubuntu raring-security multiverse
+deb http://security.ubuntu.com/ubuntu raring-security universe

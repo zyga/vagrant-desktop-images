@@ -1,0 +1,11 @@
+# deb http://archive.canonical.com/ubuntu trusty partner
+# deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu trusty main
+deb http://archive.ubuntu.com/ubuntu trusty multiverse
+deb http://archive.ubuntu.com/ubuntu trusty universe
+deb http://archive.ubuntu.com/ubuntu trusty-updates main
+deb http://archive.ubuntu.com/ubuntu trusty-updates multiverse
+deb http://archive.ubuntu.com/ubuntu trusty-updates universe
+deb http://security.ubuntu.com/ubuntu trusty-security main
+deb http://security.ubuntu.com/ubuntu trusty-security multiverse
+deb http://security.ubuntu.com/ubuntu trusty-security universe

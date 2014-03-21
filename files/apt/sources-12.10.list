@@ -1,0 +1,11 @@
+# deb http://archive.canonical.com/ubuntu oneiric partner
+# deb http://archive.ubuntu.com/ubuntu oneiric-backports main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu oneiric main
+deb http://archive.ubuntu.com/ubuntu oneiric multiverse
+deb http://archive.ubuntu.com/ubuntu oneiric universe
+deb http://archive.ubuntu.com/ubuntu oneiric-updates main
+deb http://archive.ubuntu.com/ubuntu oneiric-updates multiverse
+deb http://archive.ubuntu.com/ubuntu oneiric-updates universe
+deb http://security.ubuntu.com/ubuntu oneiric-security main
+deb http://security.ubuntu.com/ubuntu oneiric-security multiverse
+deb http://security.ubuntu.com/ubuntu oneiric-security universe

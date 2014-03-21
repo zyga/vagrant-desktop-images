@@ -99,6 +99,14 @@ class screensaver_settings {
           tries     => 3,
           try_sleep => 5,
        ;
+       'set idle delay to zero (2)':
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/session/idle-delay 0'",
+          unless    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/session/idle-delay) = 0'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
+       ;
        'disable monitor sleep on AC':
           command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-ac 0'",
           unless    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-ac) = 0'",

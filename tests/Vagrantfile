@@ -2,9 +2,16 @@
 # vi: set ft=ruby sw=2 ts=2 :
 
 Vagrant.configure("2") do |config|
+
   # Use a basic desktop image 
-  config.vm.box = "precise-desktop-i386"
-  config.vm.box_url = ""
+  [:precise, :quantal, :raring, :saucy, :trusty].each do |release|
+    config.vm.define "test-#{release}-desktop-i386" do |conf|
+      conf.vm.box = "#{release}-cloud-i386"
+    end
+    config.vm.define "test-#{release}-desktop-amd64" do |conf|
+      conf.vm.box = "#{release}-desktop-amd64"
+    end
+  end
 
   # Tweak VirtualBox configuration for GUI applications
   config.vm.provider :virtualbox do |vb|

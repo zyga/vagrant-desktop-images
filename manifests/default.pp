@@ -8,6 +8,21 @@ class base {
   }
 }
 
+class grub {
+  file { 'grub configuration':
+    path    => '/etc/default/grub',
+    ensure  => present,
+    mode    => 0644,
+    owner   => root,
+    group   => root,
+    source  => '/vagrant/files/grub/grub',
+  }
+  exec { 'update-grub':
+    require => File['grub configuration'],
+    command => '/usr/sbin/update-grub',
+  }
+}
+
 class virtualbox_x11 {
   package {
       "virtualbox-guest-dkms":      ensure => installed;
@@ -85,6 +100,7 @@ class screensaver_settings {
 }
 
 include base
+include grub
 include virtualbox_x11
 include unity_desktop
 include screensaver_settings

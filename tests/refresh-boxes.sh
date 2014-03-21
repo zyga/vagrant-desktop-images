@@ -1,6 +1,6 @@
 #!/bin/sh
 # Refresh all boxes from what's made in the parent directory
-for series in precise trusty; do
+for series in precise raring saucy trusty; do
     for arch in i386 amd64; do
         name=$series-desktop-$arch
         if [ -f ../$name.box ]; then

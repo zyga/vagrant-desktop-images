@@ -13,6 +13,7 @@ $(BOXES): %.box:
 	vagrant package $* --output $*.box
 	vagrant destroy --force $*
 
+.PHONY: clean
 clean:
 	vagrant destroy --force
 	rm -f *.box

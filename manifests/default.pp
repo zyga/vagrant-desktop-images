@@ -1,10 +1,12 @@
 class base {
   exec { 'apt-get update':
-    command => '/usr/bin/apt-get update'
+    command => '/usr/bin/apt-get update',
+    timeout => 600
   }
   exec { 'apt-get dist-upgrade':
     require => Exec['apt-get update'],
-    command => '/usr/bin/apt-get dist-upgrade --yes'
+    command => '/usr/bin/apt-get dist-upgrade --yes',
+    timeout => 3600,
   }
 }
 
@@ -55,46 +57,60 @@ class screensaver_settings {
   }
   exec {
       'disable screensaver when idle':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/idle-activation-enabled false'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/idle-activation-enabled) != false'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/idle-activation-enabled false'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/idle-activation-enabled) != false'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
       'disable screensaver lock':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/lock-enabled false'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/lock-enabled) != false'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/lock-enabled false'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/lock-enabled) != false'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
       'disable screensaver lock after suspend':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend false'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend) != false'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend false'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/desktop/screensaver/ubuntu-lock-on-suspend) != false'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
        'set idle delay to zero':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/session/idle-delay 0'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/session/idle-delay) != 0'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/session/idle-delay 0'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/session/idle-delay) != 0'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
        'disable monitor sleep on AC':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-ac 0'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-ac) != 0'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-ac 0'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-ac) != 0'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
        'disable monitor sleep on battery':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-battery 0'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-battery) != 0'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /org/gnome/settings-daemon/plugins/power/sleep-display-battery 0'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /org/gnome/settings-daemon/plugins/power/sleep-display-battery) != 0'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
        'disable remind-reload query':
-          command => "/bin/sh -c 'DISPLAY=:0 dconf write /apps/update-manager/remind-reload false'",
-          onlyif  => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /apps/update-manager/remind-reload) = true'",
-          require => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
-          user    => 'vagrant',
+          command   => "/bin/sh -c 'DISPLAY=:0 dconf write /apps/update-manager/remind-reload false'",
+          onlyif    => "/bin/sh -c 'test $(DISPLAY=:0 dconf read /apps/update-manager/remind-reload) = true'",
+          require   => [Package['dconf-tools', 'ubuntu-desktop'], Service['lightdm']],
+          user      => 'vagrant',
+          tries     => 3,
+          try_sleep => 5,
        ;
   }
 }

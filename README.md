@@ -28,6 +28,7 @@ Example Vagrantfile for Ubuntu 14.04 Desktop
     Vagrant.configure("2") do |config|
       # Use a basic trusty desktop image from git://github.com/zyga/vagrant-destop-images.git
       config.vm.box = "trusty-desktop-i386"
+      # TODO: offer premade images for download
       config.vm.box_url = ""
 
       # Tweak VirtualBox configuration for GUI applications

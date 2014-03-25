@@ -9,6 +9,7 @@ BOXES = $(foreach image,$(IMAGES),$(image).box)
 all: $(BOXES)
 
 .PHONY: $(BOXES)
+.NOTPARALLEL: $(BOXES)
 $(BOXES): %.box:
 	vagrant up $*
 	vagrant package $* --output $*.box

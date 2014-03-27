@@ -19,7 +19,20 @@ user.
 Usage (premade images)
 ======================
 
-Example Vagrantfile for Ubuntu 14.04 Desktop
+Recommended, install apt-cacher-ng:
+
+```shell
+    sudo apt-get install apt-cacher-ng
+```
+
+Make the Ubuntu 14.04 image (i386 version):
+
+```shell
+    make trusty-desktop-i386.box
+    vagrant box add -f trusty-desktop-i386 trusty-desktop-i386.box
+```
+
+Then create this Vagrantfile somewhere and 'vagrant up' it:
 
 ```ruby
     # -*- mode: ruby -*-
@@ -56,31 +69,3 @@ Example Vagrantfile for Ubuntu 14.04 Desktop
       # Ready :-)
     end
 ```
-
-Usage
-=====
-
-Because actual .box files are very large, updating them would require
-a lot of bandwidth, and make peer review harder, the actual images are
-provided as a recipe that modifies official cloud images. To generate
-your set you will need the following tools:
-
-1) vagrant (>= 1.4.3)
-
-2) GNU make
-
-To generate all images simply run::
-
-    $ make
-
-To generate a specific release only::
-
-    $ make raring
-
-Ready to bring up your image and start using it?
-
-    $ make launch-raring
-
-This will create a new Vagrant project using the raring desktop box,
-and boot directly into Unity. When you're done, just delete the raring
-directory that was created.

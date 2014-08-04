@@ -45,7 +45,8 @@ class virtualbox_x11 {
 
 class unity_desktop {
   package { "ubuntu-desktop":
-    ensure => present
+    ensure => present,
+    install_options => ['--no-install-recommends'],
   }
   file { 'lightdm.conf':
     require => Package['ubuntu-desktop'],

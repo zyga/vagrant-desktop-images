@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # Quantal is broken
-RELEASES = precise raring saucy trusty
+RELEASES = precise trusty
 IMAGES = $(foreach release,$(RELEASES),$(release)-desktop-i386 $(release)-desktop-amd64)
 BOXES = $(foreach image,$(IMAGES),$(image).box)
 

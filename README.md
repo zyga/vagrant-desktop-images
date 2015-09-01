@@ -18,8 +18,9 @@ user.
 
 Usage (premade images)
 ======================
+These instructions should work on Linux, OS X and Cygwin.
 
-Recommended, install apt-cacher-ng:
+Recommended on Ubuntu, install apt-cacher-ng:
 
 ```shell
     sudo apt-get install apt-cacher-ng
